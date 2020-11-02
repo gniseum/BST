@@ -27,7 +27,7 @@ bst * createBST(void) {
 }
 
 /**
- * Add a new node to BST
+ * Add a new node to BST.
  * */
 void addBSTNode(bst *bstPtr, int data) {
     if(!bstPtr) {
@@ -74,7 +74,6 @@ static int recursiveInsert(node *n, int data) {
                 return -1;
             }
             n->right->data = data;
-            n->right->matched = 0;
         }
     }
     else if(result > 0) {
@@ -89,7 +88,6 @@ static int recursiveInsert(node *n, int data) {
                 return -1;
             }
             n->left->data = data;
-            n->left->matched = 0;
         }
     }
 
@@ -97,7 +95,7 @@ static int recursiveInsert(node *n, int data) {
 }
 
 /**
- * 
+ * Compare new data to that from the node.
  * */
 static int compareNodes(int nodeData, int data) {
 
@@ -175,7 +173,7 @@ node * searchBST(bst *bstPtr, int data) {
 }
 
 /**
- * A preorder search
+ * A preorder search.
  * */
 static node * recursiveSearch(node *n, int data, node *match) {
     if(!n) {
@@ -199,7 +197,7 @@ static node * recursiveSearch(node *n, int data, node *match) {
 }
 
 /**
- * Frees all nodes and BST wrapper
+ * Frees all nodes and BST wrapper.
  * */
 void distroyBST(bst * bstPtr) {
     recursiveFree(bstPtr->root);
@@ -207,7 +205,7 @@ void distroyBST(bst * bstPtr) {
 }
 
 /** 
- * Recursive function to free node without orphans
+ * Recursive function to free node without orphans.
  * */
 static void recursiveFree(node *n) {
     if(!n) {

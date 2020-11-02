@@ -1,18 +1,18 @@
 /**
- * Test for Binary Search Tree functionality
+ * Test for Binary Search Tree functionality.
  * */
 #include "bst.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 /**
- * Create and populate BST for testing
+ * Create and populate BST for testing.
  * */
 bst * initBST() {
     bst *myBST = createBST();
     if(!myBST) {
         fprintf(stderr, "Failed to create BST exiting...");
-        
+
         exit(-1);
     }
 

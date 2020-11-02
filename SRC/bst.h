@@ -9,14 +9,12 @@
 
 /**
  * The struct node is one unit of a tree. Each node has pointers to
- * child nodes andhas a data field.
+ * child nodes and has a data field.
  */
 typedef struct node {
-    struct node *parent;
     struct node *left;
     struct node *right;
     int data;
-    unsigned int matched;
 } node;
 
 /**
@@ -34,7 +32,7 @@ node * searchBST(bst *bstPtr, int data);
 void distroyBST(bst * bstPtr);
 
 /**
- * Place holder functions for added removal of nodes
+ * Place holder functions for added removal of nodes.
  * */
 void removeByInt(bst *bstPtr, int data);
 void removeByPtr(bst *node);
