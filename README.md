@@ -1,0 +1,1 @@
+This contains library functions for the creation, modification, and freeing of a Binary Search Tree. In this case a wrapper struct is used that points to the root node.
