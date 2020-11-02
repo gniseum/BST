@@ -12,6 +12,7 @@ bst * initBST() {
     bst *myBST = createBST();
     if(!myBST) {
         fprintf(stderr, "Failed to create BST exiting...");
+        
         exit(-1);
     }
 

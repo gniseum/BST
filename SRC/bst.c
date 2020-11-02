@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void recursiveInsert(node *n, int data);
+static int recursiveInsert(node *n, int data);
 static int compareNodes(int nodeData, int data);
 static void recursiveFree(node *n);
 static void low2HighPrint(node *n);
@@ -18,6 +18,7 @@ static node *recursiveSearch(node *n, int data, node *match);
 bst * createBST(void) {
     bst *bstPtr = calloc(1, sizeof(*bstPtr));
     if(!bstPtr) {
+
         return NULL;
     }
     bstPtr->root = NULL;
@@ -30,25 +31,32 @@ bst * createBST(void) {
  * */
 void addBSTNode(bst *bstPtr, int data) {
     if(!bstPtr) {
+
         return;
     }
 
     if(!bstPtr->root) {
         bstPtr->root = calloc(1, sizeof(node));
         if(!bstPtr->root) {
+
             return;
         }
         bstPtr->root->data = data;
+        bstPtr->nodeCount++;
+
         return;
     }
 
-    recursiveInsert(bstPtr->root, data);
+    int result = recursiveInsert(bstPtr->root, data);
+    if(result > 0) {
+        bstPtr->nodeCount++;
+    }
 }
 
 /**
  * Recursively goes through and inserts new node in correct order with BST.
  * */
-static void recursiveInsert(node *n, int data) {
+static int recursiveInsert(node *n, int data) {
 
     // Result will be < 0 if the new data is larger then n->data and
     // > 0 if n->data is larger.
@@ -62,7 +70,8 @@ static void recursiveInsert(node *n, int data) {
         {
             n->right = calloc(1, sizeof(*n->right));
             if(!n->right) {
-                return;
+
+                return -1;
             }
             n->right->data = data;
             n->right->matched = 0;
@@ -76,18 +85,22 @@ static void recursiveInsert(node *n, int data) {
         else {
             n->left = calloc(1, sizeof(*n->left));
             if(!n->left) {
-                return;
+
+                return -1;
             }
             n->left->data = data;
             n->left->matched = 0;
         }
     }
+
+    return 1;
 }
 
 /**
  * 
  * */
 static int compareNodes(int nodeData, int data) {
+
     return (nodeData - data);
 }
 
@@ -112,6 +125,7 @@ void printBST(bst *bstPtr, int mode) {
  * */
 static void low2HighPrint(node *n) {
     if(!n) {
+
         return;
     }
 
@@ -131,6 +145,7 @@ static void low2HighPrint(node *n) {
  * */
 static void high2LowPrint(node *n) {
     if(!n) {
+
         return;
     }
 
@@ -151,6 +166,7 @@ static void high2LowPrint(node *n) {
 node * searchBST(bst *bstPtr, int data) {
     node *match = NULL;
     if(!bstPtr) {
+
         return match;
     }
     match = recursiveSearch(bstPtr->root, data, match);
@@ -163,6 +179,7 @@ node * searchBST(bst *bstPtr, int data) {
  * */
 static node * recursiveSearch(node *n, int data, node *match) {
     if(!n) {
+
         return match;
     }
 
@@ -171,6 +188,7 @@ static node * recursiveSearch(node *n, int data, node *match) {
     }
 
     if(match) {
+
         return match;
     }
 
@@ -192,8 +210,7 @@ void distroyBST(bst * bstPtr) {
  * Recursive function to free node without orphans
  * */
 static void recursiveFree(node *n) {
-    if(!n)
-    {
+    if(!n) {
         return;
     }
 
