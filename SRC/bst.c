@@ -27,7 +27,7 @@ bst * createBST(void) {
 }
 
 /**
- * Add a new node to BST.
+ * Add a new node to BST. Create the root node if it does not exist.
  * */
 void addBSTNode(bst *bstPtr, int data) {
     if(!bstPtr) {
